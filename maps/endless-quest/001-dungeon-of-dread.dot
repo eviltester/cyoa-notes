@@ -1,0 +1,248 @@
+digraph endless_quest_1 {
+
+  /*
+title: Dungeon of Dread
+series: Endless Quest
+Author: Rlose Estes
+Links: 
+  */
+
+  start [shape=Mdiamond];
+  start -> p1;
+  
+  p1 [label="1-12 intro"]
+  p1 -> p13 [label="examine hole\nin wall"]
+  p1 -> p15 [label="examine pile\n of leaves"]
+  
+  p13 [label="13"]
+  
+  p15 [label="15-16 Chute Fall"]
+  p15 -> p22 [label="side tunnel"]
+  p15 -> p20 [label="fight"]
+  
+  p22 [label="22 Distract Orc"]
+  p22 -> p39 [style="dashed"] // No Decision
+  
+  p39 [label="39 Goblins"]
+  p39 -> p40 [label="fight"]
+  p39 -> p43 [label="not fight"]
+  
+  
+  p43 [label="43 Hurt", shape=Msquare]
+  /*
+     43 is an end, we get stabbed by Goblin and leave,
+     illogical event though
+  */
+
+  p40 [label="40-42 Goblins/Dogs"]
+  p40 -> p103 [label="fight"]
+  p40 -> p96 [label="befriend"]
+
+  p96 [label="96-97 Skeletons"]
+  p96 -> p80 [label="fight"]
+  p96 -> p83 [label="leave"]
+  
+  p80 [label="80 Survive"]
+  p80 -> p62 [style="dashed"] // No Decision
+  
+  p62 [label="62-66 Pool/Key"]
+  p62 -> p86 [label="Go Left"]
+  p62 -> p73 [label="Go Right"]
+  p62 -> p77 [label="Get Key"]
+  
+  p77 [label="77-79 Get Key"]
+  p77 -> p86 [label="Go Left"]
+  p77 -> p73 [label="Go Right"]
+  
+  p86 [label="86-87 Gargoyle"]
+  p86 -> p100 [label="fight"]
+  p86 -> p81 [label="not fight"]
+
+  p81 [label="81-82 Exit", shape=Msquare]
+    /*
+     81 is an end, we leave through a hidden exit
+     that closes behind us
+  */
+
+  p100 [label="100-101 Fight Gargoyle"]
+  p100 -> p94 [style="dashed"] // No Decision
+
+  p94 [label="94 Kalman's voice"]
+  p94 -> p81 [label="Go Left"]
+  p94 -> p108 [label="Seek Kalman"]
+
+  p108 [label="108-112 kill basilisk"]
+  p108 -> p115 [label="Search Room"]
+  p108 -> p113 [label="Open Lock"]
+
+  p113 [label="113-114 Kalman, run", shape=Msquare]
+  /* surprised by Kalman we fight and then run away
+     leaving by secret door, essentially exit 81
+   */
+
+  p115 [label="115-118 Fight Kalman"]
+  /* we fight, basically same fight as 113 but
+     this time we don't run, inconsistent
+   */
+  p115 -> p120 [style="dashed"] // No Decision
+
+  p120 [label="120 Defeat Kalman"]
+  p120 -> p126 [label="Use Key"]
+  p120 -> p125 [label="We have no key"]
+
+  p126 [label="126-128 Use key to\nget treasure", shape=Msquare]
+  /* use the key, get the treasure, full ending
+     we vow to use treasure for good and fight evil */
+
+  p125 [label="125 Pick Lock", shape=Msquare]
+  /* Halfling has secret lockpicking ability
+     we open lock and get treasure.
+     No vows. We just rich.
+     Felt weak, could have led into 126 ending.
+  */
+
+  // Fill in the blanks
+  p13 [label="13-14 Found Stairs"]
+  p13 -> p17 [label="Fight Kobolds"]
+  p13 -> p19 [label="Go Left"]
+
+  p17 [label="17-18 Ants!"]
+  p17 -> p24 [label="Fight Ants"]
+  p17 -> p27 [label="Go Left"]
+
+  p27 [label="27-30 Toad!"]
+  p27 -> p49 [label="Fight Toad"]
+  p27 -> p23 [label="Go Passage"]
+
+  p49 [label="49-53 Fight Toad"]
+  /* Toad is a turned human */
+  p49 -> p62 [label="Go Left"]
+  p49 -> p57 [label="Go Right (laughter)"]
+
+  p57 [label="57-58 Troll!"]
+  p57 -> p59 [label="Fight Toad"]
+  p57 -> p62 [label="Leave"]
+
+  p59 [label="59 Death\n by Troll", shape=Msquare]
+  
+
+  p23 [label="23 Sad Baboon"]
+  p23 -> p54 [label="Face Baboon"]
+  p23 -> p71 [label="Go Right"]
+
+  p54 [label="54-56 Baboon Fight"]
+  /* Baboon is a turned human */
+  p54 -> p69 [label="Fight Hobgoblin"]
+  p54 -> p62 [label="Go Left"]
+
+  p69 [label="69-70 Trick Hobgoblin"]
+  p69 -> p62 [style="dashed"] // No Decision
+
+  p71 [label="71-72 Ogre"]
+  p71 -> p88 [label="Fight Ogre"]
+  p71 -> p62 [label="Leave"]
+
+  p88 [label="88-91 Equip"]
+  p88 -> p102 [label="Go Left"]
+  p88 -> p105 [label="Go Right (breeze)"]
+
+  p102 [label="102 Tunnel"]
+  p102 -> p94 [label="Go Left"]
+  p102 -> p105 [label="Go Right"]
+
+  p105 [label="105 Exit", shape=Msquare]
+  /* basically the same exit as 81 */
+
+  p19 [label="19 Beetle"]
+  /* description mentions "it's no worse than the Ants"
+     but we haven't seen any Ants yet, and don't on this path!
+  */
+  p19 -> p44 [label="Fight Beetle"]
+  p19 -> p31 [label="Avoid Beetle"]
+
+  p44 [label="44 Defeat Beetle"]
+  /* Beetle is a turned human */
+  p44 -> p60 [label="Fight Spider"]
+  p44 -> p105 [label="Retreat"]
+
+  p60 [label="60-61 Defeat Spider"]
+  p60 -> p71 [label="Go Left"]
+  p60 -> p62 [label="Go Right"]
+
+  p31 [label="31 Wasp Kills Orc"]
+  /* wasp is probably a turned human */
+  p31 -> p23 [label="Avoid"]
+  p31 -> p33 [label="Fight Wasp"]
+
+  p33 [label="33-34 Kill Wasp"]
+  /* wasp was a human */
+  p33 -> p62 [style="dashed"] // No Decision
+
+  p24 [label="24-26 Bugbear"]
+  p24 -> p35 [label="Fight Bugbear"]
+  p24 -> p23 [label="Avoid"]
+
+  p35 [label="35-36 Minotaur"]
+  p35 -> p37 [label="Fight Minotaur"]
+  p35 -> p23 [label="Avoid"]
+
+  p37 [label="37-38 Death\n by Minotaur", shape=Msquare]
+
+
+  p20 [label="20-21 Defeat Orc"]
+  /* in a different path we see a wasp fight an orc.
+     pity that sequence wasn't used here to release a wasp
+     that killed the orc, then replay would show
+     different interpretations of events where the player's
+     actions might have made a difference */
+  p20 -> p23 [style="dashed"] // No Decision     
+
+  p103 [label="103-104\n Tricked\n by dogs"]
+  p103 -> p69 [label="Fight Hobgoblin"]
+  p103 -> p98 [label="Avoid"]
+
+  p98 [label="98 Slime"]
+  p98 -> p62 [label="Avoid"]
+  p98 -> p83 [label="Fight Slime"]
+
+  p83 [label="83-85 Equip"]
+  p83 -> p62 [label="Go Left"]
+  p83 -> p102 [label="Go Right"]  
+
+  p73 [label="73-74 Hillgiant"]
+  p73 -> p95 [label="Ambush"]
+  p73 -> p75 [label="Avoid"]  
+
+  p75 [label="75-76 Dragon Tracks"]
+  p75 -> p67 [label="Follow"]
+  p75 -> p92 [label="Avoid"]  
+
+  p67 [label="67-68 Death\n by Dragon", shape=Msquare]
+
+  p92 [label="92-93 Attacked\n by Giant Pudding!"]
+  p92 -> p106 [label="Attack"]
+  p92 -> p105 [label="Avoid"]  
+
+  p106 [label="106-107 Death\n by Pudding", shape=Msquare]
+  
+  p95 [label="95 Death To\n Hillgiant"]
+  p95 -> p119 [style="dashed"] // No Decision
+
+  p119 [label="119 Corridor"]
+  p119 -> p94 [label="Go Left"]
+  p119 -> p102 [label="Go Right"]
+
+  /* most paths lead to discovering that
+    the wizard turns people into stuff
+    the path I took first did not
+    but that is the main replay draw
+    the rest of the replays are mainly
+    different enounters to the same path
+    no real subplots
+
+    equipment may not be consistent through the
+    different paths
+    */
+
+  //end [shape=Msquare];
+}
